@@ -1,0 +1,17 @@
+body {
+  background-color: #fcfcfc;
+}
+#root {
+  background: url(../assets/background.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  margin: 50px auto;
+  width: 1024px;
+  height: 550px;
+  background-color: #ccc;
+}
+
+.SVG {
+  width: 80vw;
+  height: auto;
+}
