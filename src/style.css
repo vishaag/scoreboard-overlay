@@ -1,17 +1,29 @@
 body {
   background-color: #fcfcfc;
 }
-#root {
+
+.overlays {
   background: url(../assets/background.jpg);
   background-size: 100%;
   background-repeat: no-repeat;
   margin: 50px auto;
+  height: 576px;
   width: 1024px;
-  height: 550px;
-  background-color: #ccc;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 30px;
+}
+
+.player-controls {
+  text-align: center;
+}
+
+.logo {
+  vertical-align: top;
 }
 
 .SVG {
-  width: 80vw;
+  width: 889px;
   height: auto;
 }

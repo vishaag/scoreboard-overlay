@@ -1,14 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Scoreboard from "./Scoreboard";
+import Overlays from "./Overlays";
+import PlayerControls from "./PlayerControls";
+import { TimelineLite } from "gsap";
 
 class App extends React.Component {
+  constructor() {
+    super();
+    this.timeline = new TimelineLite({ paused: true });
+  }
   render() {
-    const finalScore = "1-0";
-    const animationSequenceArray = [{ animation: "main", delay: 0 }];
     return (
       <div>
-        <Scoreboard score={finalScore} animation={animationSequenceArray} />
+        <Overlays timeline={this.timeline} />
+        <PlayerControls timeline={this.timeline} />
       </div>
     );
   }

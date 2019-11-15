@@ -1,13 +1,12 @@
 import React from "react";
-import { TimelineLite } from "gsap/all";
 
 class Scoreboard extends React.Component {
   constructor(props) {
     super(props);
 
-    this.timeline = new TimelineLite({ paused: true });
-
-    this.content = null;
+    this.score = props.score;
+    this.animationSequnce = props.animationSequnce;
+    this.timeline = props.timeline;
 
     this.leftTeam = null;
     this.rightTeam = null;
@@ -34,65 +33,40 @@ class Scoreboard extends React.Component {
 
   render() {
     return (
-      <div>
-        <div>
-          <svg className="SVG" version="1.1" xmlns="http://www.w3.org/2000/svg">
-            <g ref={g => (this.leftTeam = g)}>
-              <rect
-                x="10"
-                y="10"
-                width="40"
-                height="40"
-                stroke="blue"
-                fill="blue"
-                strokeWidth="5"
-              />
-              <text
-                x="17.5"
-                y="32.5"
-                fontFamily="Verdana"
-                fontSize="10"
-                fill="white"
-              >
-                15
-              </text>
-            </g>
+      <React.Fragment>
+        <svg className="SVG" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <g ref={g => (this.leftTeam = g)}>
             <rect
-              ref={rect => (this.rightTeam = rect)}
-              x="50"
+              x="10"
               y="10"
               width="40"
               height="40"
-              stroke="white"
-              fill="transparent"
+              stroke="blue"
+              fill="blue"
               strokeWidth="5"
             />
-          </svg>
-        </div>
-        <div className="my-3 btn-group">
-          <button className="btn gsap-btn" onClick={() => this.timeline.play()}>
-            Play
-          </button>
-          <button
-            className="btn gsap-btn"
-            onClick={() => this.timeline.pause()}
-          >
-            Pause
-          </button>
-          <button
-            className="btn gsap-btn"
-            onClick={() => this.timeline.reverse()}
-          >
-            Reverse
-          </button>
-          <button
-            className="btn gsap-btn"
-            onClick={() => this.timeline.restart()}
-          >
-            Restart
-          </button>
-        </div>
-      </div>
+            <text
+              x="17.5"
+              y="32.5"
+              fontFamily="Verdana"
+              fontSize="10"
+              fill="white"
+            >
+              15
+            </text>
+          </g>
+          <rect
+            ref={rect => (this.rightTeam = rect)}
+            x="50"
+            y="10"
+            width="40"
+            height="40"
+            stroke="white"
+            fill="transparent"
+            strokeWidth="5"
+          />
+        </svg>
+      </React.Fragment>
     );
   }
 }
