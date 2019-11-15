@@ -10,7 +10,7 @@ class MatchLogo extends React.Component {
   }
 
   componentDidMount() {
-    this.timeline.from(this.logo, 1, { opacity: 0 }, "=-1"); // show content div
+    this.timeline.from(this.logo, 1, { opacity: 0 }); // show content div
   }
 
   render() {

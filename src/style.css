@@ -6,7 +6,7 @@ body {
   background: url(../assets/background.jpg);
   background-size: 100%;
   background-repeat: no-repeat;
-  margin: 50px auto;
+  margin: 20px auto;
   height: 576px;
   width: 1024px;
   -webkit-box-sizing: border-box;
@@ -26,4 +26,23 @@ body {
 .SVG {
   width: 889px;
   height: auto;
+}
+
+.title {
+  font-size: 30px;
+  text-align: center;
+  width: 100%;
+  display: block;
+  margin-top: 20px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+/* Overlays */
+
+.score-text {
+  fill: white;
+  font-size: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 800;
 }
