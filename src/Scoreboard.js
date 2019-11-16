@@ -1,6 +1,5 @@
 import React from "react";
 
-import { Quad } from "gsap";
 class Scoreboard extends React.Component {
   constructor(props) {
     super(props);
@@ -9,8 +8,8 @@ class Scoreboard extends React.Component {
     this.animationSequence = props.animationSequence;
     this.timeline = props.timeline;
 
-    this.leftTeam = null;
-    this.rightTeam = null;
+    this.leftTeamBox = null;
+    this.rightTeamBox = null;
     this.leftTeamText = null;
     this.rightTeamText = null;
     this.scoreBox = null;
@@ -37,12 +36,56 @@ class Scoreboard extends React.Component {
         `=${animationDelayObject["main"]}`
       );
     } else if (states.includes("main")) {
-      this.timeline.from(this.scoreText, 1, {
-        scaleX: 2,
-        scaleY: 2,
-        opacity: 0,
-        transformOrigin: "50% 50%"
-      });
+      this.timeline
+        .from(this.scoreText, 0.3, {
+          scaleX: 2,
+          scaleY: 2,
+          opacity: 0,
+          transformOrigin: "50% 50%"
+        })
+        .from(
+          this.scoreBox,
+          0.3,
+          {
+            scaleX: 0,
+            opacity: 0,
+            transformOrigin: "50% 50%"
+          },
+          "=-0.3"
+        )
+        .from(this.leftTeamBox, 0.2, {
+          scaleX: 0.2,
+          opacity: 0,
+          transformOrigin: "right"
+        })
+        .from(
+          this.leftTeamText,
+          0.2,
+          {
+            x: 20,
+            opacity: 0
+          },
+          "=-0.2"
+        )
+        .from(
+          this.rightTeamBox,
+          0.2,
+          {
+            scaleX: 0.2,
+            opacity: 0,
+            transformOrigin: "left"
+          },
+          "=-0.2"
+        )
+        .from(
+          this.rightTeamText,
+          0.2,
+          {
+            x: -20,
+            opacity: 0
+          },
+          "=-0.2"
+        );
     }
 
     // this.timeline
@@ -60,25 +103,61 @@ class Scoreboard extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <svg className="SVG" version="1.1" xmlns="http://www.w3.org/2000/svg">
-          <g>
+        <svg x="0" y="5" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <svg x="25" y="5">
+            <rect
+              ref={rect => (this.leftTeamBox = rect)}
+              width="75"
+              height="40"
+              fill="#DC143C	"
+            />
+            <text
+              ref={text => (this.leftTeamText = text)}
+              className="score-text"
+              x="37.5"
+              y="20"
+              textAnchor="middle"
+              alignmentBaseline="central"
+            >
+              KC
+            </text>
+          </svg>
+          <svg x="100" y="5">
             <rect
               ref={rect => (this.scoreBox = rect)}
-              x="100"
-              y="5"
               width="75"
               height="40"
               fill="#00003f"
             />
             <text
               ref={text => (this.scoreText = text)}
-              x="120"
-              y="32.5"
               className="score-text"
+              x="37.5"
+              y="20"
+              textAnchor="middle"
+              alignmentBaseline="central"
             >
               0-4
             </text>
-          </g>
+          </svg>
+          <svg x="175" y="5">
+            <rect
+              ref={rect => (this.rightTeamBox = rect)}
+              width="75"
+              height="40"
+              fill="grey"
+            />
+            <text
+              ref={text => (this.rightTeamText = text)}
+              className="score-text"
+              x="37.5"
+              y="20"
+              textAnchor="middle"
+              alignmentBaseline="central"
+            >
+              GG
+            </text>
+          </svg>
         </svg>
       </React.Fragment>
     );
