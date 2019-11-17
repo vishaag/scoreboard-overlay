@@ -81,6 +81,22 @@ When the application is opened, it is initially in the hidden state and then imm
 the animation.
 The state can then be changed between main and main+Stat using the respective buttons.
 
+clicking on main will change  the animation props as : 
+
+```[{ animation: "main", delay: 0 }]```
+
+
+clicking on main+Stat will change  the animation props as : 
+```
+[
+  { animation: "teamStat", delay: 0 }
+]
+```
+
+
+
+
+
 ## Tech Stack
 React, Greensock (for SVG animations), live site hosted on Zeit Now.
 
