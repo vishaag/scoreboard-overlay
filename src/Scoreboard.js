@@ -166,8 +166,7 @@ class Scoreboard extends React.Component {
             textAnchor="middle"
             alignmentBaseline="central"
           >
-            {/* {this.props.overlayScoreText} */}
-            {this.state.currentState}
+            {this.props.overlayScoreText}
           </text>
         </svg>
         <svg x="175" y="5">

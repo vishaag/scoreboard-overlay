@@ -71,3 +71,14 @@ body {
   fill: #b1d6e3;
   font-family: Tahoma, sans-serif;
 }
+
+.state-controls {
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 400;
+}
+
+.state-controls input {
+  margin: 20px 10px 10px 5px;
+  padding: 10px;
+}

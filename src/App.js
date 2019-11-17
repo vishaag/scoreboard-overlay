@@ -15,25 +15,6 @@ class App extends React.Component {
     this.handleLeftTeamTextChange = this.handleLeftTeamTextChange.bind(this);
     this.handleRightTeamTextChange = this.handleRightTeamTextChange.bind(this);
 
-    // this.animateMachine = createMachine({
-    //   id: "animateMachine",
-    //   initial: "one",
-    //   states: {
-    //     one: { on: { MAIN: "two" } },
-    //     two: { on: { STATS: "three", HIDDEN: "one" } },
-    //     three: { on: { MAIN: "two", HIDDEN: "one" } }
-    //   }
-    // });
-
-    // this.animationSequences = {
-    //   one: [],
-    //   two: [{ animation: "main", delay: 0 }],
-    //   three: [
-    //     { animation: "main", delay: 0 },
-    //     { animation: "teamStat", delay: 0.6 }
-    //   ]
-    // };
-
     this.animationSequences = {
       one: [],
       two: [{ animation: "main", delay: 0 }],
@@ -89,6 +70,14 @@ class App extends React.Component {
           overlayRightTeamText={this.state.rightTeam}
           handleRightTeamTextChange={this.handleRightTeamTextChange}
         />
+        <div className="state-controls">
+          <button onClick={() => this.handleAnimationTransition("two")}>
+            Main State
+          </button>
+          <button onClick={() => this.handleAnimationTransition("three")}>
+            Main + teamStat State
+          </button>
+        </div>
         <Overlays
           animationSequence={this.state.animationSequence}
           // scoreboardTimeline={this.scoreboardTimeline}
@@ -97,20 +86,6 @@ class App extends React.Component {
           overlayLeftTeamText={this.state.leftTeam}
           overlayRightTeamText={this.state.rightTeam}
         />
-        {/* <AnimationControls
-          scoreboardAnimationSequence={this.scoreboardAnimationSequence}
-        /> */}
-        <button onClick={() => this.handleAnimationTransition("two")}>
-          Two
-        </button>
-        <button onClick={() => this.handleAnimationTransition("three")}>
-          Three
-        </button>
-
-        {/* <PlayerControls
-          scoreboardTimeline={this.scoreboardTimeline}
-          logoTimeline={this.logoTimeline}
-        /> */}
       </div>
     );
   }
