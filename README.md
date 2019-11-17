@@ -87,11 +87,8 @@ clicking on main will change  the animation props as :
 
 
 clicking on main+Stat will change  the animation props as : 
-```
-[
-  { animation: "teamStat", delay: 0 }
-]
-```
+
+```[{ animation: "teamStat", delay: 0 }]```
 
 
 
