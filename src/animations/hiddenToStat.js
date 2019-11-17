@@ -1,8 +1,8 @@
 import { TimelineLite } from "gsap";
 
-function hiddenToMain(animationDelayObject) {
-  const hiddenToMainTimeline = new TimelineLite({ paused: true });
-  hiddenToMainTimeline
+function hiddenToStat(animationDelayObject) {
+  const hiddenToStatTimeline = new TimelineLite({ paused: true });
+  hiddenToStatTimeline
     .from(
       this.scoreText,
       0.3,
@@ -112,9 +112,65 @@ function hiddenToMain(animationDelayObject) {
         opacity: 0
       },
       "=-0.5"
+    )
+    .from(this.teamLogoNameBox, 0.5, {
+      scaleX: 0,
+      opacity: 0,
+      transformOrigin: "left"
+    })
+    .from(
+      this.logo,
+      0.5,
+      {
+        x: "-20",
+        opacity: 0
+      },
+      "=-0.4"
+    )
+    .from(
+      this.logoNameBoxSliver,
+      0.5,
+      {
+        x: "-20",
+        opacity: 0
+      },
+      "=-0.4"
+    )
+    .from(
+      this.fullTeamName,
+      0.5,
+      {
+        x: "-20",
+        opacity: 0
+      },
+      "=-0.4"
+    )
+    .from(
+      this.warningCardBox,
+      0.5,
+      {
+        scaleX: 0,
+        opacity: 0
+      },
+      "=-0.2"
+    )
+    .from(
+      this.warningCardBoxText1,
+      0.5,
+      {
+        opacity: 0
+      },
+      "=-0.5"
+    )
+    .from(
+      this.warningCardBoxText2,
+      0.5,
+      {
+        opacity: 0
+      },
+      "=-0.5"
     );
-
-  return hiddenToMainTimeline;
+  return hiddenToStatTimeline;
 }
 
-export default hiddenToMain;
+export default hiddenToStat;

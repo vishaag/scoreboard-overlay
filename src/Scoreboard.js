@@ -1,6 +1,7 @@
 import React from "react";
 import hiddenToMainTimeline from "./animations/hiddenToMain";
 import hiddenToStatTimeline from "./animations/hiddenToStat";
+import statToMainTimeline from "./animations/statToMain";
 import logo from "../assets/logo.png";
 
 class Scoreboard extends React.Component {
@@ -22,6 +23,13 @@ class Scoreboard extends React.Component {
     this.timeBoxText = null;
 
     this.teamLogoNameBox = null;
+    this.logo = null;
+    this.logoNameBoxSliver = null;
+    this.fullTeamName = null;
+
+    this.warningCardBox = null;
+    this.warningCardBoxText1 = null;
+    this.warningCardBoxText2 = null;
 
     this.timeline = null;
 
@@ -70,24 +78,19 @@ class Scoreboard extends React.Component {
       this.timeline.play();
       // console.log("teamStateAnimation");
     }
-
-    // this.timeline
-    // .to(this.leftTeam, 0.5, { x: -50, opacity: 0 }, "+=0.5")
-    // .from(this.leftTeam, 1, { opacity: 0, x: "50px" })
-    // .from(this.rightTeam, 1, { opacity: 0, x: "-100px" }, "=-1");
-    // .set(this.content, { autoAlpha: 1 }) // show content div
-    // .from(this.leftTeam, 0.5, { left: 200, autoAlpha: 0 });
-    // .from(this.rightTeam, 2.5, { left: -100, autoAlpha: 0 }); // added -0.25 seconds prior to end this.of timeline
-    // .from(this.leftTeam, 0.5, { scale: 0.5, autoAlpha: 0 }, "feature"); // added 0.5 seconds after end of timeline
-    // .from(this.leftTeam, 0.5, { left: 100, autoAlpha: 0 }, "feature+=0.25");
-    // .staggerFrom(this.leftTeam, 0.2, { scale: 0, autoAlpha: 0 }, 0.1); //animate all icons with 0.1 second stagger
   }
 
   shouldComponentUpdate(props) {
     console.log("component did update");
     console.log(props);
 
-    // this.timeline.clear();
+    this.timeline = statToMainTimeline.call(this);
+    this.timeline.eventCallback("onComplete", () => {
+      this.setState({
+        currentState: "two"
+      });
+    });
+    this.timeline.play();
 
     return true;
   }
@@ -182,7 +185,7 @@ class Scoreboard extends React.Component {
             90:00
           </text>
         </svg>
-        {/* <svg x="250" y="5">
+        <svg x="250" y="5">
           <rect
             ref={rect => (this.teamLogoNameBox = rect)}
             width="250"
@@ -199,7 +202,7 @@ class Scoreboard extends React.Component {
           />
           <rect
             x="60"
-            ref={rect => (this.teamLogoNameBox = rect)}
+            ref={rect => (this.logoNameBoxSliver = rect)}
             width="0.5"
             height="40"
             fill="white"
@@ -207,7 +210,7 @@ class Scoreboard extends React.Component {
           ></rect>
           <text
             x="150"
-            ref={text => (this.timeBoxText = text)}
+            ref={text => (this.fullTeamName = text)}
             className="score-text"
             y="20"
             textAnchor="middle"
@@ -215,16 +218,16 @@ class Scoreboard extends React.Component {
           >
             Kingston City
           </text>
-        </svg> */}
-        {/* <svg x="500" y="5">
+        </svg>
+        <svg x="500" y="5">
           <rect
-            ref={rect => (this.timeBox = rect)}
+            ref={rect => (this.warningCardBox = rect)}
             width="150"
             height="40"
             fill="#00003f"
           />
           <text
-            ref={text => (this.timeBoxText = text)}
+            ref={text => (this.warningCardBoxText1 = text)}
             className="red-cards-text"
             x="60"
             y="20"
@@ -234,7 +237,7 @@ class Scoreboard extends React.Component {
             Red Cards
           </text>
           <text
-            ref={text => (this.timeBoxText = text)}
+            ref={text => (this.warningCardBoxText2 = text)}
             className="score-text"
             x="120"
             y="20"
@@ -243,7 +246,7 @@ class Scoreboard extends React.Component {
           >
             0
           </text>
-        </svg> */}
+        </svg>
       </svg>
     );
   }
