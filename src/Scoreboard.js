@@ -3,7 +3,6 @@ import hiddenToMainTimeline from "./animations/hiddenToMain";
 import hiddenToStatTimeline from "./animations/hiddenToStat";
 import statToMainTimeline from "./animations/statToMain";
 import mainToStatTimeline from "./animations/mainToStat";
-import logo from "../assets/logo.png";
 
 class Scoreboard extends React.Component {
   constructor(props) {
@@ -42,7 +41,7 @@ class Scoreboard extends React.Component {
   componentDidMount() {
     let animationStates = [];
     let animationDelayObject = {};
-    this.props.animationSequence.forEach(animationObject => {
+    this.props.animation.forEach(animationObject => {
       animationStates.push(animationObject.animation);
       // if delay exists, assign it; else set defualt delay as 0
       if (animationObject.delay) {
@@ -77,18 +76,13 @@ class Scoreboard extends React.Component {
         });
       });
       this.timeline.play();
-      // console.log("teamStateAnimation");
     }
   }
 
   shouldComponentUpdate(props) {
-    if (this.timeline.isActive()) {
-      return false;
-    }
-    console.log(props);
     let animationStates = [];
 
-    const nextAnimationSequence = props.animationSequence;
+    const nextAnimationSequence = props.animation;
 
     nextAnimationSequence.forEach(animationObject => {
       animationStates.push(animationObject.animation);
@@ -132,12 +126,14 @@ class Scoreboard extends React.Component {
             width="75"
             height="40"
             className="left-team-box"
+            fill={this.props.colors.leftTeam.primary}
           />
           <rect
             ref={rect => (this.leftTeamBoxStrip = rect)}
             width="10"
             height="40"
             x="65"
+            fill={this.props.colors.leftTeam.secondary}
             className="left-box-strip"
           />
           <text
@@ -147,8 +143,9 @@ class Scoreboard extends React.Component {
             textAnchor="middle"
             alignmentBaseline="central"
             className="left-team-text"
+            fill={this.props.colors.leftTeam.text}
           >
-            {this.props.overlayLeftTeamText}
+            {this.props.leftTeamShortText}
           </text>
         </svg>
         <svg x="100" y="5">
@@ -156,7 +153,7 @@ class Scoreboard extends React.Component {
             ref={rect => (this.scoreBox = rect)}
             width="75"
             height="40"
-            fill="#00003f"
+            fill={this.props.colors.common}
           />
           <text
             ref={text => (this.scoreText = text)}
@@ -165,6 +162,7 @@ class Scoreboard extends React.Component {
             y="20"
             textAnchor="middle"
             alignmentBaseline="central"
+            fill={this.props.colors.commonText}
           >
             {this.props.overlayScoreText}
           </text>
@@ -175,6 +173,7 @@ class Scoreboard extends React.Component {
             width="75"
             height="40"
             className="right-team-box"
+            fill={this.props.colors.rightTeam.primary}
           />
           <rect
             ref={rect => (this.rightTeamBoxStrip = rect)}
@@ -182,6 +181,7 @@ class Scoreboard extends React.Component {
             height="40"
             x="0"
             className="right-box-strip"
+            fill={this.props.colors.rightTeam.secondary}
           />
           <text
             ref={text => (this.rightTeamText = text)}
@@ -190,8 +190,9 @@ class Scoreboard extends React.Component {
             y="20"
             textAnchor="middle"
             alignmentBaseline="central"
+            fill={this.props.colors.rightTeam.text}
           >
-            {this.props.overlayRightTeamText}
+            {this.props.rightTeamShortText}
           </text>
         </svg>
         <svg x="250" y="5">
@@ -199,7 +200,7 @@ class Scoreboard extends React.Component {
             ref={rect => (this.timeBox = rect)}
             width="90"
             height="40"
-            fill="#00003f"
+            fill={this.props.colors.common}
           />
           <text
             ref={text => (this.timeBoxText = text)}
@@ -208,6 +209,7 @@ class Scoreboard extends React.Component {
             y="20"
             textAnchor="middle"
             alignmentBaseline="central"
+            fill={this.props.colors.commonText}
           >
             90:00
           </text>
@@ -218,14 +220,16 @@ class Scoreboard extends React.Component {
             width="250"
             height="40"
             className="left-team-box "
+            fill={this.props.colors.leftTeam.primary}
           ></rect>
           <image
-            x="10"
+            x="15"
+            y="5"
             ref={img => (this.logo = img)}
             alt="match logo"
-            xlinkHref={logo}
-            height="40"
-            width="40"
+            xlinkHref={this.props.overlayLogo}
+            height="30"
+            width="30"
           />
           <rect
             x="60"
@@ -242,8 +246,9 @@ class Scoreboard extends React.Component {
             y="20"
             textAnchor="middle"
             alignmentBaseline="central"
+            fill={this.props.colors.leftTeam.text}
           >
-            Kingston City
+            {this.props.teamAttributes.leftTeam.full}
           </text>
         </svg>
         <svg x="500" y="5">
@@ -251,7 +256,7 @@ class Scoreboard extends React.Component {
             ref={rect => (this.warningCardBox = rect)}
             width="150"
             height="40"
-            fill="#00003f"
+            fill={this.props.colors.common}
           />
           <text
             ref={text => (this.warningCardBoxText1 = text)}
@@ -260,6 +265,7 @@ class Scoreboard extends React.Component {
             y="20"
             textAnchor="middle"
             alignmentBaseline="central"
+            fill={this.props.colors.commonSecondary}
           >
             Red Cards
           </text>
@@ -270,6 +276,7 @@ class Scoreboard extends React.Component {
             y="20"
             textAnchor="middle"
             alignmentBaseline="central"
+            fill={this.props.colors.commonText}
           >
             0
           </text>

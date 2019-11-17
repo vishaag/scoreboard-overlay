@@ -32,43 +32,43 @@ body {
 /* Overlays */
 
 .left-team-box {
-  fill: #db251e;
+  /* fill: #db251e; */
 }
 
 .left-team-text {
-  fill: white;
+  /* fill: white; */
   font-size: 20px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: 800;
 }
 
 .score-text {
-  fill: white;
+  /* fill: white; */
   font-size: 20px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: 800;
 }
 
 .right-team-box {
-  fill: white;
+  /* fill: white; */
 }
 
 .right-team-text {
-  fill: #164d3a;
+  /* fill: #164d3a; */
   font-size: 20px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: 800;
 }
 
 .left-box-strip {
-  fill: #df3f3a;
+  /* fill: #df3f3a; */
 }
 .right-box-strip {
-  fill: #e6e4e6;
+  /* fill: #e6e4e6; */
 }
 
 .red-cards-text {
-  fill: #b1d6e3;
+  /* fill: #b1d6e3; */
   font-family: Tahoma, sans-serif;
 }
 
@@ -81,4 +81,13 @@ body {
 .state-controls input {
   margin: 20px 10px 10px 5px;
   padding: 10px;
+}
+
+.state-controls select {
+  margin: 20px 10px 10px 5px;
+  height: 35px;
+}
+
+.props-input {
+  text-transform: uppercase;
 }

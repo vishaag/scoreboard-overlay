@@ -1,9 +1,19 @@
 import React from "react";
 import Scoreboard from "./Scoreboard";
 import MatchLogo from "./MatchLogo";
+import teamLogo from "../assets/teamLogo.png";
 
 class Overlays extends React.Component {
   render() {
+    const teamAttributes = {
+      leftTeam: {
+        full: "Kingston City"
+      },
+      rightTeam: {
+        full: "Green Gully"
+      }
+    };
+
     // const scoreboardAnimationSequence = [{ animation: "main", delay: 0 }];
     return (
       <div className="overlays">
@@ -14,11 +24,13 @@ class Overlays extends React.Component {
           xmlns="http://www.w3.org/2000/svg"
         >
           <Scoreboard
-            animationSequence={this.props.animationSequence}
-            // timeline={this.props.scoreboardTimeline}
+            animation={this.props.animationSequence}
             overlayScoreText={this.props.overlayScoreText}
-            overlayLeftTeamText={this.props.overlayLeftTeamText}
-            overlayRightTeamText={this.props.overlayRightTeamText}
+            leftTeamShortText={this.props.overlayLeftTeamText}
+            rightTeamShortText={this.props.overlayRightTeamText}
+            overlayLogo={teamLogo}
+            colors={this.props.colors}
+            teamAttributes={teamAttributes}
           />
           <MatchLogo timeline={this.props.logoTimeline} />
         </svg>

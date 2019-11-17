@@ -9,16 +9,33 @@ class App extends React.Component {
   constructor() {
     super();
     // this.scoreboardTimeline = new TimelineLite({ paused: true });
-    this.logoTimeline = new TimelineLite({ paused: true });
+    this.logoTimeline = new TimelineLite({ paused: false, delay: 2 });
 
     this.handleScoreTextChange = this.handleScoreTextChange.bind(this);
     this.handleLeftTeamTextChange = this.handleLeftTeamTextChange.bind(this);
     this.handleRightTeamTextChange = this.handleRightTeamTextChange.bind(this);
+    this.handleColorChange = this.handleColorChange.bind(this);
 
     this.animationSequences = {
       one: [],
       two: [{ animation: "main", delay: 0 }],
       three: [{ animation: "teamStat", delay: 0.6 }]
+    };
+
+    this.spiderman = {
+      leftTeam: {
+        primary: "#db251e",
+        secondary: "#df3f3a",
+        text: "white"
+      },
+      rightTeam: {
+        primary: "white",
+        secondary: "#e6e4e6",
+        text: "#164d3a"
+      },
+      common: "#00003f",
+      commonSecondary: "#b1d6e3",
+      commonText: "white"
     };
 
     this.state = {
@@ -29,8 +46,49 @@ class App extends React.Component {
       animationSequence: [
         { animation: "main", delay: 2 },
         { animation: "teamStat", delay: 2 }
-      ]
+      ],
+      teamColors: this.spiderman
     };
+  }
+
+  handleColorChange(e) {
+    if (e.target.value === "spiderman") {
+      this.setState({
+        teamColors: {
+          leftTeam: {
+            primary: "#db251e",
+            secondary: "#df3f3a",
+            text: "white"
+          },
+          rightTeam: {
+            primary: "white",
+            secondary: "#e6e4e6",
+            text: "#164d3a"
+          },
+          common: "#00003f",
+          commonSecondary: "#b1d6e3",
+          commonText: "white"
+        }
+      });
+    } else if (e.target.value === "wolverine") {
+      this.setState({
+        teamColors: {
+          leftTeam: {
+            primary: "#a30303",
+            secondary: "#b7b7b7",
+            text: "white"
+          },
+          rightTeam: {
+            primary: "#ffb400",
+            secondary: "#b37e00",
+            text: "black"
+          },
+          common: "#1d2158",
+          commonSecondary: "#b1d6e3",
+          commonText: "white"
+        }
+      });
+    }
   }
 
   handleAnimationTransition(e) {
@@ -41,18 +99,21 @@ class App extends React.Component {
   }
 
   handleScoreTextChange(e) {
+    let text = e.target.value.toUpperCase();
     this.setState({
-      score: e.target.value
+      score: text
     });
   }
   handleLeftTeamTextChange(e) {
+    let text = e.target.value.toUpperCase();
     this.setState({
-      leftTeam: e.target.value
+      leftTeam: text
     });
   }
   handleRightTeamTextChange(e) {
+    let text = e.target.value.toUpperCase();
     this.setState({
-      rightTeam: e.target.value
+      rightTeam: text
     });
   }
 
@@ -69,6 +130,7 @@ class App extends React.Component {
           handleLeftTeamTextChange={this.handleLeftTeamTextChange}
           overlayRightTeamText={this.state.rightTeam}
           handleRightTeamTextChange={this.handleRightTeamTextChange}
+          handleColorChange={this.handleColorChange}
         />
         <div className="state-controls">
           <button onClick={() => this.handleAnimationTransition("two")}>
@@ -85,6 +147,7 @@ class App extends React.Component {
           overlayScoreText={this.state.score}
           overlayLeftTeamText={this.state.leftTeam}
           overlayRightTeamText={this.state.rightTeam}
+          colors={this.state.teamColors}
         />
       </div>
     );
