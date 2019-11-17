@@ -2,6 +2,7 @@ import React from "react";
 import hiddenToMainTimeline from "./animations/hiddenToMain";
 import hiddenToStatTimeline from "./animations/hiddenToStat";
 import statToMainTimeline from "./animations/statToMain";
+import mainToStatTimeline from "./animations/mainToStat";
 import logo from "../assets/logo.png";
 
 class Scoreboard extends React.Component {
@@ -81,17 +82,44 @@ class Scoreboard extends React.Component {
   }
 
   shouldComponentUpdate(props) {
-    console.log("component did update");
+    if (this.timeline.isActive()) {
+      return false;
+    }
     console.log(props);
+    let animationStates = [];
 
-    this.timeline = statToMainTimeline.call(this);
-    this.timeline.eventCallback("onComplete", () => {
-      this.setState({
-        currentState: "two"
-      });
+    const nextAnimationSequence = props.animationSequence;
+
+    nextAnimationSequence.forEach(animationObject => {
+      animationStates.push(animationObject.animation);
     });
-    this.timeline.play();
 
+    if (
+      this.state.currentState == "three" &&
+      animationStates.includes("main") &&
+      !animationStates.includes("teamStat")
+    ) {
+      this.timeline = statToMainTimeline.call(this);
+      this.timeline.eventCallback("onComplete", () => {
+        this.setState({
+          currentState: "two"
+        });
+      });
+      this.timeline.play();
+    }
+    if (
+      this.state.currentState == "two" &&
+      !animationStates.includes("main") &&
+      animationStates.includes("teamStat")
+    ) {
+      this.timeline = mainToStatTimeline.call(this);
+      this.timeline.eventCallback("onComplete", () => {
+        this.setState({
+          currentState: "three"
+        });
+      });
+      this.timeline.play();
+    }
     return true;
   }
 

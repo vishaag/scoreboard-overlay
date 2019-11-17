@@ -37,10 +37,7 @@ class App extends React.Component {
     this.animationSequences = {
       one: [],
       two: [{ animation: "main", delay: 0 }],
-      three: [
-        { animation: "main", delay: 0 },
-        { animation: "teamStat", delay: 0.6 }
-      ]
+      three: [{ animation: "teamStat", delay: 0.6 }]
     };
 
     this.state = {
@@ -49,7 +46,7 @@ class App extends React.Component {
       leftTeam: "KC",
       rightTeam: "GG",
       animationSequence: [
-        { animation: "main", delay: 0 },
+        { animation: "main", delay: 2 },
         { animation: "teamStat", delay: 2 }
       ]
     };
