@@ -80,6 +80,9 @@ class Scoreboard extends React.Component {
   }
 
   shouldComponentUpdate(props) {
+    if (this.timeline.isActive()) {
+      return true;
+    }
     let animationStates = [];
 
     const nextAnimationSequence = props.animation;
