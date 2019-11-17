@@ -3,14 +3,8 @@ import Scoreboard from "./Scoreboard";
 import MatchLogo from "./MatchLogo";
 
 class Overlays extends React.Component {
-  constructor({ scoreboardTimeline, logoTimeline }) {
-    super({ scoreboardTimeline, logoTimeline });
-    this.scoreboardTimeline = scoreboardTimeline;
-    this.logoTimeline = logoTimeline;
-  }
   render() {
-    const finalScore = "1-0";
-    const scoreboardAnimationSequence = [{ animation: "main", delay: 1 }];
+    // const scoreboardAnimationSequence = [{ animation: "main", delay: 0 }];
     return (
       <div className="overlays">
         <svg
@@ -20,11 +14,13 @@ class Overlays extends React.Component {
           xmlns="http://www.w3.org/2000/svg"
         >
           <Scoreboard
-            score={finalScore}
-            animationSequence={scoreboardAnimationSequence}
-            timeline={this.scoreboardTimeline}
+            animationSequence={this.props.animationSequence}
+            // timeline={this.props.scoreboardTimeline}
+            overlayScoreText={this.props.overlayScoreText}
+            overlayLeftTeamText={this.props.overlayLeftTeamText}
+            overlayRightTeamText={this.props.overlayRightTeamText}
           />
-          <MatchLogo timeline={this.logoTimeline} />
+          <MatchLogo timeline={this.props.logoTimeline} />
         </svg>
       </div>
     );

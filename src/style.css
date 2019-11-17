@@ -31,9 +31,43 @@ body {
 
 /* Overlays */
 
+.left-team-box {
+  fill: #db251e;
+}
+
+.left-team-text {
+  fill: white;
+  font-size: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 800;
+}
+
 .score-text {
   fill: white;
   font-size: 20px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: 800;
+}
+
+.right-team-box {
+  fill: white;
+}
+
+.right-team-text {
+  fill: #164d3a;
+  font-size: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 800;
+}
+
+.left-box-strip {
+  fill: #df3f3a;
+}
+.right-box-strip {
+  fill: #e6e4e6;
+}
+
+.red-cards-text {
+  fill: #b1d6e3;
+  font-family: Tahoma, sans-serif;
 }
