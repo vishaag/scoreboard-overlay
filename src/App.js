@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import Overlays from "./Overlays";
 import OverlayTextControls from "./OverlayTextControls";
 import { TimelineLite } from "gsap";
-// import { createMachine } from "@xstate/fsm";
 
 class App extends React.Component {
   constructor() {
@@ -15,6 +14,7 @@ class App extends React.Component {
     this.handleLeftTeamTextChange = this.handleLeftTeamTextChange.bind(this);
     this.handleRightTeamTextChange = this.handleRightTeamTextChange.bind(this);
     this.handleColorChange = this.handleColorChange.bind(this);
+    this.handleAnimationTransition = this.handleAnimationTransition.bind(this);
 
     this.animationSequences = {
       one: [],
